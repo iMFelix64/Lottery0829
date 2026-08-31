@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#050505" />
+    <title>黑金礼函 · 幸运抽奖</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="lottery" id="lottery" aria-live="polite">
+      <div class="ambient ambient--one"></div>
+      <div class="ambient ambient--two"></div>
+      <div class="grain" aria-hidden="true"></div>
+
+      <header class="masthead">
+        <div class="brand-mark" aria-hidden="true"><span>G</span><i></i><span>A</span></div>
+        <p class="eyebrow">SPECIAL GIVEAWAY · No. 06</p>
+        <h1>一份特别礼物，正在揭晓</h1>
+        <p class="status" id="status">奖品信封正在排列</p>
+      </header>
+
+      <section class="table" id="table" aria-label="抽奖信封动画区">
+        <div class="orbit orbit--outer" aria-hidden="true"></div>
+        <div class="orbit orbit--inner" aria-hidden="true"></div>
+        <div class="envelopes" id="envelopes"></div>
+
+        <div class="prize-reveal" id="prizeReveal" aria-hidden="true">
+          <div class="prize-halo"></div>
+          <div class="prize-art-wrap">
+            <img src="./GTA6.png" alt="GTA6 Ultimate Edition 奖品封面" class="prize-art" draggable="false" />
+            <div class="prize-glint"></div>
+          </div>
+          <div class="winner-copy">
+            <p>Your invitation to Vice City</p>
+            <h2>GTA6 <em>Ultimate Edition</em></h2>
+            <span>恭喜，你抽中了终极大奖</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>LIMITED GIFT · SPECIAL EDITION</p>
+        <button class="replay" id="replay" type="button" aria-label="重新播放抽奖动画">
+          <span>再抽一次</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.34 5.66M20 11V5m0 6h-6" /></svg>
+        </button>
+      </footer>
+    </main>
+
+    <template id="envelopeTemplate">
+      <article class="envelope" aria-hidden="true">
+        <div class="envelope-inner">
+          <div class="envelope-face envelope-front">
+            <div class="paper-noise"></div>
+            <div class="front-frame"></div>
+            <div class="monogram">VI</div>
+            <div class="blank-copy">
+              <span>SPECIAL DELIVERY</span>
+              <i></i>
+              <small>PLEASE OPEN WITH CARE</small>
+            </div>
+            <div class="wax-seal"><span>V</span></div>
+          </div>
+          <div class="envelope-face envelope-back">
+            <div class="paper-noise"></div>
+            <div class="back-frame"></div>
+            <div class="flap"><span class="flap-line"></span></div>
+            <div class="prize-copy">
+              <small>SPECIAL GIVEAWAY</small>
+              <strong class="prize-name"></strong>
+              <span class="edition"></span>
+            </div>
+            <div class="serial"></div>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
