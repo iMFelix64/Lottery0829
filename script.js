@@ -258,14 +258,18 @@ async function chooseWinner(id) {
   elements.masthead.classList.add("muted");
   cards.filter(card => card !== winner).forEach((card, i) => {
     const loserPosition = positions[Number(card.dataset.index)];
-    card.animate([
+    const disappearance = card.animate([
       { filter: getComputedStyle(card).filter, opacity: 1 },
       {
-        filter: "grayscale(.25) brightness(.46) blur(.25px)",
-        opacity: .42,
-        transform: t({ ...loserPosition, y: loserPosition.y + 18, z: -120 - i * 12, s: .92 })
+        filter: "grayscale(.2) brightness(.72) blur(.2px)",
+        opacity: 0,
+        transform: t({ ...loserPosition, y: loserPosition.y + 28, z: -160 - i * 12, s: .86 })
       }
-    ], { duration: 760, delay: i * 40, easing: "ease", fill: "forwards" });
+    ], { duration: 720, delay: i * 45, easing: "cubic-bezier(.4,0,.25,1)", fill: "forwards" });
+
+    settle(disappearance).then(() => {
+      if (id === runId) card.style.visibility = "hidden";
+    });
   });
 
   await settle(winner.animate([
