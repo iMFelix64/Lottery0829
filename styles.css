@@ -112,25 +112,8 @@ img { -webkit-user-drag: none; }
 
 .masthead.muted { opacity: .34; transform: translateX(-50%) translateY(-8px); }
 
-.brand-mark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  color: var(--ink);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: .08em;
-}
-
-.brand-mark i {
-  width: 88px;
-  height: 5px;
-  background: linear-gradient(90deg, #5c9f58 0 20%, #d7ab2e 20% 40%, #e6802e 40% 58%, #c74447 58% 76%, #7f497e 76% 88%, #2388a5 88% 100%);
-}
-
 .eyebrow {
-  margin: 10px 0 8px;
+  margin: 0 0 8px;
   color: var(--muted);
   font-size: 10px;
   font-weight: 600;
