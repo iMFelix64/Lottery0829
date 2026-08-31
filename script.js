@@ -308,20 +308,33 @@ async function openPrize(winner, id) {
   if (id !== runId) throw new Error("cancelled");
 
   elements.reveal.style.visibility = "visible";
-  await Promise.all([
-    settle(elements.reveal.animate([
-      { opacity: 0, transform: "translate(-50%, 6%) scale(.36)" },
-      { opacity: 1, transform: "translate(-50%, -75%) scale(1.04)", offset: .82 },
-      { opacity: 1, transform: "translate(-50%, -72%) scale(1)" }
-    ], { duration: 1450, easing: "cubic-bezier(.18,.78,.14,1)", fill: "forwards" })),
-    settle($(".prize-art-wrap").animate([
+  elements.reveal.style.zIndex = "20";
+  const artReveal = $(".prize-art-wrap").animate([
       { transform: "rotate(-4deg)", filter: "saturate(.55) brightness(.7)" },
       { transform: "rotate(1.2deg)", filter: "saturate(1.05) brightness(1.04)" }
-    ], { duration: 1450, easing: "cubic-bezier(.18,.78,.14,1)", fill: "forwards" })),
-    settle($(".prize-halo").animate([
+    ], { duration: 1450, easing: "cubic-bezier(.18,.78,.14,1)", fill: "forwards" });
+  const haloReveal = $(".prize-halo").animate([
       { opacity: 0, transform: "translate(-50%, -50%) scale(.5)" },
       { opacity: 1, transform: "translate(-50%, -50%) scale(1)" }
-    ], { duration: 1500, fill: "forwards" }))
+    ], { duration: 1500, fill: "forwards" });
+
+  // The artwork begins behind the envelope, like a card still inside it.
+  await settle(elements.reveal.animate([
+    { opacity: 0, transform: "translate(-50%, 6%) scale(.36)" },
+    { opacity: 1, transform: "translate(-50%, -43%) scale(.78)" }
+  ], { duration: 790, easing: "cubic-bezier(.18,.72,.18,1)", fill: "forwards" }));
+  if (id !== runId) throw new Error("cancelled");
+
+  // Once the artwork clears the flap, move it above the envelope stack.
+  elements.reveal.style.zIndex = "50";
+  await Promise.all([
+    settle(elements.reveal.animate([
+      { opacity: 1, transform: "translate(-50%, -43%) scale(.78)" },
+      { opacity: 1, transform: "translate(-50%, -75%) scale(1.04)", offset: .72 },
+      { opacity: 1, transform: "translate(-50%, -72%) scale(1)" }
+    ], { duration: 660, easing: "cubic-bezier(.16,.76,.16,1)", fill: "forwards" })),
+    settle(artReveal),
+    settle(haloReveal)
   ]);
   if (id !== runId) throw new Error("cancelled");
 
